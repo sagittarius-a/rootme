@@ -1,3 +1,5 @@
+![preview](.img/terminal.png)
+
 ## Overview
 
 This Python package offers some basic feature in order to interact with
