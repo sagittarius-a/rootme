@@ -38,14 +38,13 @@ def rank(args: argparse.Namespace, cookie: str) -> None:
 
         users: Dict[str, Searchresult] = search_user(username, cookies)
 
-        userid = ""
-        # Parse API search results in order to find the correct user
+        userids = []
+        # Parse API search results in order to find the correct users
         for user in users:
             if users[user]["nom"] == username:
-                userid = users[user]["id_auteur"]
-                break
+                userids.append(users[user]["id_auteur"])
 
-        if not userid:
+        if not userids:
             raise ValueError(
                 (
                     "User %s not found in 50 first search terms."
@@ -54,14 +53,17 @@ def rank(args: argparse.Namespace, cookie: str) -> None:
                 username,
             )
 
-        userinfo = get_user_info(userid, cookies)
+        for userid in userids:
+            userinfo = get_user_info(userid, cookies)
+            if userinfo is None:
+                continue
 
-        print(
-            f"[{Fore.GREEN}+{Style.RESET_ALL}] "
-            f"{userinfo['nom']:<{max_len_user + 2}} "
-            f"Score: {userinfo['score']:<6} "
-            f"Position: {userinfo['position']}"
-        )
+            print(
+                f"[{Fore.GREEN}+{Style.RESET_ALL}] "
+                f"{userinfo['nom']:<{max_len_user + 2}} "
+                f"Score: {userinfo['score']:<6} "
+                f"Position: {userinfo['position']}"
+            )
 
 
 def display_ranking(args: argparse.Namespace, cookie: str) -> None:
@@ -106,6 +108,8 @@ def display_ranking(args: argparse.Namespace, cookie: str) -> None:
 
         userid = ranking[entry]["id_auteur"]
         userinfo = get_user_info(userid, cookies)
+        if userinfo is None:
+            continue
 
         print(
             f"{Fore.YELLOW}{ranking[entry]['place']:>4}{Style.RESET_ALL}. "
