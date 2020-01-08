@@ -17,18 +17,16 @@ cookie is created in /tmp.
 
 """
 
-import argparse
-import json
 from typing import Dict, Optional
-
-import requests
-from colorama import Fore, Style
-
 from rootme import __version__
 from rootme.connect import connect
+import json
 from rootme.cookies import load_cookie, save_cookie
 from rootme.rank import display_ranking, rank
+import argparse
 from rootme.status import status
+import requests
+from colorama import Fore, Style
 
 
 def get_args() -> argparse.ArgumentParser:
