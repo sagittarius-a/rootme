@@ -24,6 +24,7 @@ from typing import Dict, Optional
 import requests
 from colorama import Fore, Style
 
+from rootme import __version__
 from rootme.connect import connect
 from rootme.cookies import load_cookie, save_cookie
 from rootme.rank import display_ranking, rank
@@ -43,6 +44,7 @@ def get_args() -> argparse.ArgumentParser:
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser.add_argument("--version", action="version", version=__version__)
 
     subparsers = parser.add_subparsers(dest="command")
 
