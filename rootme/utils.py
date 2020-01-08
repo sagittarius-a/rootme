@@ -1,7 +1,7 @@
 """root-me.org API utilities."""
 
 import json
-from typing import Dict
+from typing import Dict, Optional
 
 import requests
 
@@ -49,7 +49,7 @@ def search_user(
     return results
 
 
-def get_user_info(userid: str, cookies: Dict[str, str]) -> Userinfo:
+def get_user_info(userid: str, cookies: Dict[str, str]) -> Optional[Userinfo]:
     """Get user information based on userid.
 
     Parameters
@@ -69,9 +69,8 @@ def get_user_info(userid: str, cookies: Dict[str, str]) -> Userinfo:
     r = requests.get(url, cookies=cookies)
 
     if r.status_code != 200:
-        raise ValueError(
-            "Cannot get info about user %s. Error %s", userid, r.status_code,
-        )
+        print(f"Cannot get info about user %s. Error %s" % (userid, r.status_code))
+        return
 
     # Load results in intermediate variable in order to check type consistency
     # Mypy is not able to infer type directly from JSON data. Typing is more
