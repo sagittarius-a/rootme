@@ -110,3 +110,7 @@ Code is checked with several tools in order to maintain a certain code quality.
 
 The project is based on the API provided by root-me.org. I'll potentially add
 some features when the API will evolve.
+
+## Contributors
+
+* [zTeeed](https://github.com/zteeed)
