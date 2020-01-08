@@ -9,6 +9,7 @@ setup(
     version="1.0.2",
     description="api.www.root-me.org cli simple client",
     entry_points={"console_scripts": ["rootme=rootme.__main__:main"]},
+    install_requires=["requests", "colorama", "typing-extensions",],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",
