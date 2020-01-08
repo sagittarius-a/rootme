@@ -1,0 +1,36 @@
+name: Python application
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7.5
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7.5
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    - name: Check typing with mypy in strict mode
+      run: |
+        mypy --strict .
+    - name: Check code formatting
+      run: |
+        black -l 79 --diff --check .
+    - name: Check PEP8
+      run: |
+        pycodestyle .
+    - name: Check PEP257
+      run: |
+        pydocstyle --convention=numpy .
+    - name: Check imports sorting
+      run: |
+        isort --check-only rootme/*
+
