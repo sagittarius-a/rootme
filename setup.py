@@ -6,7 +6,7 @@ setup(
     name="rootme",
     author="sagittarius-a",
     packages=find_packages(),
-    version="1.0.0",
+    version="1.0.2",
     description="api.www.root-me.org cli simple client",
     entry_points={"console_scripts": ["rootme=rootme.__main__:main"]},
     classifiers=[
