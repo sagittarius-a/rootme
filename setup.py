@@ -6,7 +6,7 @@ setup(
     name="rootme",
     author="sagittarius-a",
     packages=find_packages(),
-    version="1.0.2",
+    version="1.0.3",
     description="api.www.root-me.org cli simple client",
     entry_points={"console_scripts": ["rootme=rootme.__main__:main"]},
     install_requires=["requests", "colorama", "typing-extensions",],
