@@ -69,8 +69,8 @@ def get_user_info(userid: str, cookies: Dict[str, str]) -> Optional[Userinfo]:
     r = requests.get(url, cookies=cookies)
 
     if r.status_code != 200:
-        print(f"Cannot get info about user %s. Error %s" % (userid, r.status_code))
-        return
+        print(f"Cannot get info about user {userid}. Error {r.status_code}")
+        return None
 
     # Load results in intermediate variable in order to check type consistency
     # Mypy is not able to infer type directly from JSON data. Typing is more
